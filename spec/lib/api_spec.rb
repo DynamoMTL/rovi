@@ -8,7 +8,7 @@ describe Rovi::Api do
         :albumid => "MW0000111184" 
       }
       
-      Timecop.freeze(Time.local(2012, 1, 1)) do
+      Timecop.freeze(Time.local(2014, 1, 1)) do
         @api = Rovi::Api.new("12345", "54321")
       end
     end
@@ -20,12 +20,12 @@ describe Rovi::Api do
     it 'should know the right endpoint for the data service' do
       @api.instance_variable_set(:@api_function, "album")
       @api.instance_variable_set(:@api_function_request, "info")
-      @api.send(:endpoint).should == "http://api.rovicorp.com/data/v1/album/info"
+      @api.send(:endpoint).should == "http://api.rovicorp.com/data/v1.1/album/info"
     end
     
     it 'should calculate the sig from the MD5 of the access key, secret and the current unix time' do
-      Timecop.freeze(Time.local(2012, 1, 1)) do
-        @api.send(:generate_sig).should == "0ff3ae460b0f7d821482204ca70c8fe8"
+      Timecop.freeze(Time.local(2014, 1, 1)) do
+        @api.send(:generate_sig).should == '66b85a590cc398174ee650ad6711f30e'
       end
     end
   
