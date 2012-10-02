@@ -34,11 +34,11 @@ describe Rovi::Api do
         mock_response = mock()
         mock_response.expects(:parsed_response).returns({ "value" => { "nested" =>  "hi" }})        
         
-        Rovi::Api.expects(:get).with('http://api.rovicorp.com/data/v1/album/info', { 
+        Rovi::Api.expects(:get).with('http://api.rovicorp.com/data/v1.1/album/info', { 
         :query => { :albumid => 'MW0000111184', :apikey => '12345', 
-        :sig => '0ff3ae460b0f7d821482204ca70c8fe8'}}).returns(mock_response)
+        :sig => '66b85a590cc398174ee650ad6711f30e'}}).returns(mock_response)
 
-        Timecop.freeze(Time.local(2012, 1, 1)) do
+        Timecop.freeze(Time.local(2014, 1, 1)) do
           @response = @api.get("album", "info", { :albumid => "MW0000111184" })
         end
       end
