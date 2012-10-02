@@ -11,3 +11,9 @@ Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 RSpec.configure do |config|
   config.mock_with :mocha
 end
+
+def api_with_frozen_time
+  Timecop.freeze(Time.local(2014, 1, 1)) do
+    Rovi::Api.new("12345", "54321")
+  end
+end

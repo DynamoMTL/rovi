@@ -1,16 +1,37 @@
 require 'spec_helper'
 
 describe Rovi::Api do
+
+  before do
+    @api = api_with_frozen_time
+  end
   
+  describe "A call to the data service release info endpoint" do
+
+    before do
+      params = {
+        :upcid => '081227995119'
+      }
+    end
+
+    after do
+      Timecop.return
+    end
+
+    it 'should know the right endpoint for the releaes service' do
+      @api.instance_variable_set(:@api_function, "release")
+      @api.instance_variable_set(:@api_function_request, "info")
+      @api.send(:endpoint).should == 'http://api.rovicorp.com/data/v1.1/release/info'
+    end
+
+  end
+
   describe "A call to the data service album info endpoint" do
     before do
       params = {
         :albumid => "MW0000111184" 
       }
       
-      Timecop.freeze(Time.local(2014, 1, 1)) do
-        @api = Rovi::Api.new("12345", "54321")
-      end
     end
     
     after do
