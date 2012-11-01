@@ -3,7 +3,7 @@ module Rovi
   class Api
     include HTTParty
     
-    @@host = "http://api.rovicorp.com"    
+    @@host = "http://api-music.rovicorp.com"    
     
     def initialize(api_key, api_secret)
       @api_key, @api_secret = api_key, api_secret
