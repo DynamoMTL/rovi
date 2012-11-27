@@ -7,7 +7,7 @@ module Rovi
     
     def initialize(api_key, api_secret)
       @api_key, @api_secret = api_key, api_secret
-      @version = "v1.1"
+      @version = "v1"
       @service_name = "data"
     end
     
